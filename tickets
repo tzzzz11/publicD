@@ -1,0 +1,26 @@
+
+n = int(input("Введите количество билетов, которое желаете приобрести: "))
+age = {}
+sum1 = {}
+
+for i in range(1, n + 1):
+    print("Введите возраст посетителя №", i, end=": ")
+    age[i] = int(input())
+    n = n + 1
+# print(age)
+
+for i in range(1, len(age) + 1):
+    if age[i] < 18:
+        sum1[i] = 0
+    if 18 <= age[i] < 25:
+        sum1[i] = 990
+    if age[i] >= 25:
+        sum1[i] = 1390
+    n = n + 1
+# print(sum1)
+
+if len(sum1) < 4:
+    print("Общая стоимость билетов составит:", sum(sum1.values()), "рублей")
+else:
+    print("Общая стоимость билетов (с учетом скидки 10%) составит:", sum(sum1.values()) * 0.9, "рублей")
+    
