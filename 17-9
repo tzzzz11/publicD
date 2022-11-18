@@ -1,1 +1,35 @@
+a = input("Введите несколько чисел через пробел: ",)
+b = list(map(int, a.split()))
+d = int(input("Введите дополнительное число: ", ))
 
+def qsort(array, left, right):
+    middle = (left + right) // 2
+    i, j = left, right
+    while i <= j:
+        while array[i] < array[middle]:
+            i += 1
+        while array[j] > array[middle]:
+            j -= 1
+        if i <= j:
+            array[i], array[j] = array[j], array[i]
+            i += 1
+            j -= 1
+    if j > left:
+        qsort(array, left, j)
+    if i < right:
+        qsort(array, i, right)
+qsort(b, 0, len(b)-1)
+print('\nВаш список после сортировки по возрастанию:', b)
+
+if d > b[len(b)-1] or d < b[0]:
+    print("Дополнительное число находится вне границ списка")
+else:
+    def search(array, element):
+        n = 0
+        while n < len(b):
+            if array[n] < element <= array[n + 1]:
+                return n + 1
+            n = n + 1
+
+    print("Hомер позиции элемента в данном списке, который меньше", d, ", а следующий за ним больше или равен", d, ":", search(b, d))
+    print("Иными словами, число", d, "находится после числа с номером", search(b, d), "в данном списке")
